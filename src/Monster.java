@@ -1,4 +1,4 @@
-public class Monster extends Enemie {
+public class Monster extends Enemy {
 
     private Integer range;
 

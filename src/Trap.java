@@ -1,6 +1,6 @@
 import org.omg.PortableInterceptor.INACTIVE;
 
-public class Trap extends Enemie {
+public class Trap extends Enemy {
 
     private Integer range;
     private Integer respawn;
