@@ -37,4 +37,16 @@ public class GameBoard{
         return gameBoard;
     }
 
+    public void combat(Player attacker, Enemy defender){
+       attacker.attack(defender);
+       if (defender.health.getCurrentHealth()<=0)
+           this.gameUnits.remove(defender);
+    }
+    public static void combat(Enemy attacker,Player defender){
+        attacker.attack(defender);
+        if (defender.health.getCurrentHealth()<=0){
+            // put X on player and end the game.
+        }
+    }
+
 }

@@ -9,4 +9,11 @@ public abstract class Enemy extends GameUnit {
         this.tile=tile;
     }
 
+    public Integer getExperienceValue() {
+        return experienceValue;
+    }
+
+    public void attack(Player player){
+        super.attack(this,player);
+    }
 }

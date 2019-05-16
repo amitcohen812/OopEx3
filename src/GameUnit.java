@@ -1,5 +1,6 @@
 
 import java.awt.*;
+import java.util.Random;
 
 public abstract class GameUnit {
     protected String name;
@@ -17,6 +18,15 @@ public abstract class GameUnit {
 
     public double euclideanDistance(Point first,Point second){
         return Math.sqrt((first.x-second.x)+(first.y-second.y));
+    }
+
+    protected void attack(GameUnit attacker,GameUnit defender){
+        Random rnd=new Random();
+        int attackPoints=rnd.nextInt(attacker.attackPoints+1);
+        int defendPoints=rnd.nextInt(defender.defensePoints+1);
+        int damage=attackPoints-defendPoints;
+        if (damage>0)
+            defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
     }
 
 }
