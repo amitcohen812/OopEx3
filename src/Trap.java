@@ -1,3 +1,6 @@
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Random;
 
 public class Trap extends Enemy {
 
@@ -18,7 +21,15 @@ public class Trap extends Enemy {
     public void gameTick(){ //relocates each turn, respawns randomly
         if (ticksCount.intValue()==relocationTime.intValue()){
             ticksCount=0;
-            //find all free spots and relocate
+            LinkedList<Point> optPoints=new LinkedList<>();
+            for (int i=0;i<GameBoard.gameBoard.length;i=i+1){
+                for (int j=0;j<GameBoard.gameBoard[i].length;i=i+1){
+                    if (this.euclideanDistance(this.position,new Point(i,j))<2)
+                        optPoints.addFirst(new Point(i,j));
+                }
+            }
+            Random rnd =new Random();
+            this.position=optPoints.get(rnd.nextInt(optPoints.size()));
         }
         else {
             ticksCount=ticksCount+1;
