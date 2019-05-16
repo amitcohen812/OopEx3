@@ -1,6 +1,4 @@
 
-import com.sun.xml.internal.ws.dump.LoggingDumpTube;
-
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -9,6 +7,8 @@ public class GameBoard{
     private String isDeterministic;
     private static char [][] gameBoard;
     public static LinkedList<Enemy> gameUnits;
+    public static Point playerPosition;
+    public static Player player;
 
     public GameBoard(String pathToBoards,String isDeterministic){
         this.pathToBoards=pathToBoards;

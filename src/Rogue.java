@@ -21,8 +21,8 @@ public class Rogue extends Player {
         this.currentEnergy=Math.min(this.currentEnergy+10,100);
     }
 
-    public void castSpecialAbility(){ // still need to be completed!
-        if (currentEnergy<cost){
+    public void castSpecialAbility(){
+        if (currentEnergy<cost){ //should not print here!
             System.out.println("Error, not enough energy!");
         }
         else

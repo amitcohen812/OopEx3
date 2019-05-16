@@ -36,7 +36,7 @@ public class Mage extends Player {
 
     @Override
     public void castSpecialAbility()
-    { // still needs to be completed!
+    {
         if (this.currentMana<this.cost){//printing should not be here!
             System.out.println("Error, you don't have enough mana yet");
         }
