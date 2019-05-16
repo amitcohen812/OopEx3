@@ -2,6 +2,7 @@ public class Rogue extends Player {
 
     private Integer cost;
     private Integer currentEnergy;
+    private static final double range=2;
 
     public Rogue(String name, Health health, Integer attackPoints, Integer defensePoints,Integer cost) {
         super(name, health, attackPoints, defensePoints);
@@ -27,6 +28,10 @@ public class Rogue extends Player {
         else
         {
             this.currentEnergy=this.currentEnergy-this.cost;
+            for(Enemy e: GameBoard.gameUnits){
+                if (e.euclideanDistance(e.position,this.position)<range)
+                    GameBoard.combat(this,e);
+            }
         }
     }
 }
