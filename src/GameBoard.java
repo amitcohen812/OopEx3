@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class GameBoard{
     private String pathToBoards;
     private String isDeterministic;
-    private static char [][] gameBoard;
+    public static char [][] gameBoard;
     public static LinkedList<Enemy> gameUnits;
     public static Point playerPosition;
     public static Player player;
@@ -35,9 +35,6 @@ public class GameBoard{
                 distinguishChar(gameBoard[i][j]);
             }
         }
-    }
-    public char[][] getGameBoard() {
-        return gameBoard;
     }
 
     public static void combat(Player attacker, Enemy defender){
