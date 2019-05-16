@@ -11,7 +11,7 @@ public class Warrior extends Player {
     }
 
     public void castSpecialAbility(){
-        if (this.remaining>0)
+        if (this.remaining>0) //should not print here !
             System.out.println("error, still on cooldown!");
         else {
             if (this.health.getCurrentHealth() + 2 * this.defensePoints <= this.health.getHealthPool()) {
