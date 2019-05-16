@@ -10,7 +10,7 @@ public class Warrior extends Player {
         this.remaining=cooldown;
     }
 
-    public void heal(){
+    public void castSpecialAbility(){
         if (this.remaining>0)
             System.out.println("error, still on cooldown!");
         else {

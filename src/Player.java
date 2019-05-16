@@ -19,4 +19,7 @@ public abstract class Player extends GameUnit {
         this.level=1;
     }
 
+    public void castSpecialAbility(){}
+
+
 }

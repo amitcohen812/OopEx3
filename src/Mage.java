@@ -30,7 +30,9 @@ public class Mage extends Player {
         this.currentMana= Math.min(this.manaPool,this.currentMana+1);
     }
 
-    public void blizzard(){ // still needs to be completed!
+    @Override
+    public void castSpecialAbility()
+    { // still needs to be completed!
         if (this.currentMana<this.cost){
             System.out.println("Error, you don't have enough mana yet");
         }
