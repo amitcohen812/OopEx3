@@ -23,9 +23,7 @@ public abstract class Player extends GameUnit {
     public void castSpecialAbility() {
     }
 
-    public void attack(Enemy enemy){
+    public void attack(GameUnit enemy){
         super.attack(this,enemy);
-        if (enemy.health.getCurrentHealth()<=0)
-            this.experience+=enemy.getExperienceValue();
     }
 }

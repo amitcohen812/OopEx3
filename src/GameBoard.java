@@ -1,11 +1,14 @@
 
+import com.sun.xml.internal.ws.dump.LoggingDumpTube;
+
+import java.awt.*;
 import java.util.LinkedList;
 
 public class GameBoard{
     private String pathToBoards;
     private String isDeterministic;
-    private char [][] gameBoard;
-    private LinkedList<GameUnit> gameUnits;
+    private static char [][] gameBoard;
+    public static LinkedList<Enemy> gameUnits;
 
     public GameBoard(String pathToBoards,String isDeterministic){
         this.pathToBoards=pathToBoards;
@@ -37,16 +40,19 @@ public class GameBoard{
         return gameBoard;
     }
 
-    public void combat(Player attacker, Enemy defender){
+    public static void combat(Player attacker, Enemy defender){
        attacker.attack(defender);
-       if (defender.health.getCurrentHealth()<=0)
-           this.gameUnits.remove(defender);
+       if (defender.health.getCurrentHealth()<=0) {
+           gameUnits.remove(defender);
+           attacker.experience+=defender.getExperienceValue();
+       }
     }
     public static void combat(Enemy attacker,Player defender){
         attacker.attack(defender);
         if (defender.health.getCurrentHealth()<=0){
             // put X on player and end the game.
+            gameBoard[defender.position.x][defender.position.y]='X';
+            //endgame - needs to complete
         }
     }
-
 }

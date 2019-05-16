@@ -28,5 +28,4 @@ public abstract class GameUnit {
         if (damage>0)
             defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
     }
-
 }

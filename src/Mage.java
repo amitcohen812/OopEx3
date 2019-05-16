@@ -1,5 +1,9 @@
 import org.omg.CORBA.MARSHAL;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Random;
+
 public class Mage extends Player {
     private Integer spellPower;
     private Integer manaPool;
@@ -33,14 +37,25 @@ public class Mage extends Player {
     @Override
     public void castSpecialAbility()
     { // still needs to be completed!
-        if (this.currentMana<this.cost){
+        if (this.currentMana<this.cost){//printing should not be here!
             System.out.println("Error, you don't have enough mana yet");
         }
         else {
             this.currentMana=this.currentMana-cost;
             int hits=0;
+            Iterator<Enemy>pos=GameBoard.gameUnits.iterator();
+            LinkedList<Enemy> inRange=new LinkedList<>();
+            while (pos.hasNext()){
+                Enemy curr=pos.next();
+                if (curr.euclideanDistance(this.position,curr.position)<range){
+                    inRange.addFirst(curr);
+                }
+            }
+            Random rnd=new Random();
+            Enemy toAttack=inRange.get(rnd.nextInt(inRange.size()));
             while (hits<hitTimes){
-
+                GameBoard.combat(this,toAttack);
+                hits=hits+1;
             }
         }
     }

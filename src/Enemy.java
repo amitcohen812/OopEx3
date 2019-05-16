@@ -13,7 +13,7 @@ public abstract class Enemy extends GameUnit {
         return experienceValue;
     }
 
-    public void attack(Player player){
+    public void attack(GameUnit player){
         super.attack(this,player);
     }
 }
