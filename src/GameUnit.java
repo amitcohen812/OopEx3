@@ -29,19 +29,19 @@ public abstract class GameUnit {
             defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
     }
     protected void moveLeft(){
-        if (GameBoard.gameBoard[position.x-1][position.y]=='.')
+        if (position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.')
             this.position.x=this.position.x-1;
     }
     protected void moveRight(){
-        if (GameBoard.gameBoard[position.x+1][position.y]=='.')
+        if (GameBoard.gameBoard[position.y].length<position.x+1&&GameBoard.gameBoard[position.y][position.x+1]=='.')
             this.position.x=this.position.x+1;
     }
     protected void moveUp(){
-        if (GameBoard.gameBoard[position.x][position.y+1]=='.')
-            this.position.y= this.position.y+1;
+        if (position.y>0&&GameBoard.gameBoard[position.y-1][position.x]=='.')
+            this.position.y= this.position.y-1;
     }
     protected void moveDown(){
-        if (GameBoard.gameBoard[position.x][position.y-1]=='.')
-            this.position.y=this.position.y-1;
+        if (position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.')
+            this.position.y=this.position.y+1;
     }
 }

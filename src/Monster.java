@@ -12,8 +12,10 @@ public class Monster extends Enemy {
         super(name, health, attackPoints, defensePoints, experienceValue, tile);
         this.visionRange=visionRange;
     }
-    public Monster(Enemy e,Point position){
+    public Monster(Monster e,Point position){
         super(e,position);
+        this.position=position;
+        this.visionRange=e.visionRange;
     }
     public void gameTick(){ //traversing around the board, chase if in range
         Point playerPosition=GameBoard.playerPosition;

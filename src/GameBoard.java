@@ -15,6 +15,7 @@ public class GameBoard extends Observable{
     public static Point playerPosition;
     public static Player player;
     private LinkedList<Enemy> possibleEnemies;
+    public static boolean endTheGame=false;
 
     public GameBoard(String pathToBoards,String isDeterministic){
         this.pathToBoards=pathToBoards;
@@ -77,15 +78,21 @@ public class GameBoard extends Observable{
 
     }
     private void scanBoard(){ //iterates the whole game board
+        gameUnits=new LinkedList<>();
         for (int i=0;i<gameBoard.length;i=i+1){
             for (int j=0;j<gameBoard[i].length;j=j+1){
                 char c=gameBoard[i][j];
                 for (Enemy e:possibleEnemies){
                     if (e.getTile()==c)
                         if (e instanceof Monster){
-                            gameUnits.addFirst(new Monster(e,new Point(i,j)));
+                            gameUnits.addFirst(new Monster((Monster) e,new Point(j,i)));
                         }
-                    else gameUnits.addFirst(new Trap(e,new Point(i,j)));
+                    else gameUnits.addFirst(new Trap((Trap) e,new Point(j,i)));
+                }
+                if (c=='@'){
+                    playerPosition=new Point(j,i);
+                    player=new Warrior(2,"amit",new Health(400,400),50,40);
+                    player.position=new Point(j,i);
                 }
             }
         }
@@ -102,12 +109,15 @@ public class GameBoard extends Observable{
         attacker.attack(defender);
         if (defender.health.getCurrentHealth()<=0){
             // puts X on player and end the game.
-            gameBoard[defender.position.x][defender.position.y]='X';
+            gameBoard[defender.position.y][defender.position.x]='X';
             //endgame - needs to complete
+            endTheGame=true;
         }
     }
 
     public void gameTick(){
+        for (Enemy enemy :gameUnits)
+            enemy.gameTick();
         setChanged();
         notifyObservers();
     }
