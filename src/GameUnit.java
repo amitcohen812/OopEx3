@@ -17,7 +17,7 @@ public abstract class GameUnit {
     }
 
     public double euclideanDistance(Point first,Point second){
-        return Math.sqrt((first.x-second.x)+(first.y-second.y));
+        return Math.sqrt((first.x-second.x)*(first.x-second.x)+(first.y-second.y)*(first.y-second.y));
     }
 
     protected void attack(GameUnit attacker,GameUnit defender){
@@ -27,5 +27,21 @@ public abstract class GameUnit {
         int damage=attackPoints-defendPoints;
         if (damage>0)
             defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
+    }
+    protected void moveLeft(){
+        if (position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.')
+            this.position.x=this.position.x-1;
+    }
+    protected void moveRight(){
+        if (GameBoard.gameBoard[position.y].length<position.x+1&&GameBoard.gameBoard[position.y][position.x+1]=='.')
+            this.position.x=this.position.x+1;
+    }
+    protected void moveUp(){
+        if (position.y>0&&GameBoard.gameBoard[position.y-1][position.x]=='.')
+            this.position.y= this.position.y-1;
+    }
+    protected void moveDown(){
+        if (position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.')
+            this.position.y=this.position.y+1;
     }
 }

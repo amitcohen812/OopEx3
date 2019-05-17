@@ -16,6 +16,16 @@ public class Trap extends Enemy {
         this.relocationTime=relocationTime;
         this.visibilityTime=visibilityTime;
         this.hidden=this.visibilityTime>0;
+        this.ticksCount=0;
+    }
+    public Trap(Trap e,Point position){
+        super(e,position);
+        this.ticksCount=e.ticksCount;
+        this.relocationTime=e.relocationTime;
+        this.relocationRange=e.relocationRange;
+        this.visibilityTime=e.visibilityTime;
+        this.hidden=e.hidden;
+        this.position=position;
     }
 
     public void gameTick(){ //relocates each turn, respawns randomly
@@ -23,9 +33,9 @@ public class Trap extends Enemy {
             ticksCount=0;
             LinkedList<Point> optPoints=new LinkedList<>();
             for (int i=0;i<GameBoard.gameBoard.length;i=i+1){
-                for (int j=0;j<GameBoard.gameBoard[i].length;i=i+1){
-                    if (this.euclideanDistance(this.position,new Point(i,j))<2)
-                        optPoints.addFirst(new Point(i,j));
+                for (int j=0;j<GameBoard.gameBoard[i].length;j=j+1){
+                    if (this.euclideanDistance(this.position,new Point(j,i))<2)
+                        optPoints.addFirst(new Point(j,i));
                 }
             }
             Random rnd =new Random();
