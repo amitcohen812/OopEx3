@@ -1,6 +1,10 @@
 
 import java.awt.*;
-import java.util.Arrays;
+import java.io.File;
+import java.io.FileReader;
+import java.lang.ref.SoftReference;
+import java.nio.file.Files;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,15 +28,28 @@ public class GameBoard{
         scanBoard();
     }
 
-    private void buildBoard(){ //reads the file from the path and builds the board
-
+    public  void buildBoard(){ //reads the file from the path and builds the board
+        File file =new File(pathToBoards);
+        List<String> lines;
+        try {
+            lines=Files.readAllLines(file.toPath());
+            gameBoard=new char[lines.size()][lines.get(0).length()];
+            for (int i=0;i<lines.size();i=i+1){
+                for (int j=0;j<lines.get(i).length();j=j+1){
+                    gameBoard[i][j]=lines.get(i).charAt(j);
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void distinguishChar(LinkedList<Character> listOfCopm){ //checks what kind of slot it is, enemy, player etc..., updates gameunit list
         for (Character c: listOfCopm)
         {
             if (c!='.'&c!='#'&c!='@'){
-                
+
             }
         }
     }
