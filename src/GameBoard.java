@@ -80,7 +80,13 @@ public class GameBoard extends Observable{
         for (int i=0;i<gameBoard.length;i=i+1){
             for (int j=0;j<gameBoard[i].length;j=j+1){
                 char c=gameBoard[i][j];
-
+                for (Enemy e:possibleEnemies){
+                    if (e.getTile()==c)
+                        if (e instanceof Monster){
+                            gameUnits.addFirst(new Monster(e,new Point(i,j)));
+                        }
+                    else gameUnits.addFirst(new Trap(e,new Point(i,j)));
+                }
             }
         }
     }

@@ -13,6 +13,12 @@ public abstract class Enemy extends GameUnit implements Observer {
         this.experienceValue=experienceValue;
         this.tile=tile;
     }
+    public Enemy(Enemy enemy,Point position){
+        super(enemy.name,enemy.health,enemy.attackPoints,enemy.defensePoints);
+        this.experienceValue=enemy.experienceValue;
+        this.tile=enemy.getTile();
+        this.position=position;
+    }
 
     public Integer getExperienceValue() {
         return experienceValue;

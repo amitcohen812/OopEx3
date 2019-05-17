@@ -16,7 +16,6 @@ public abstract class Player extends GameUnit {
 
     public Player(String name, Health health, Integer attackPoints, Integer defensePoints) {
         super(name, health, attackPoints, defensePoints);
-        this.position = new Point(0, 0);
         this.level = 1;
     }
 

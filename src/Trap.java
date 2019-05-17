@@ -17,6 +17,9 @@ public class Trap extends Enemy {
         this.visibilityTime=visibilityTime;
         this.hidden=this.visibilityTime>0;
     }
+    public Trap(Enemy e,Point position){
+        super(e,position);
+    }
 
     public void gameTick(){ //relocates each turn, respawns randomly
         if (ticksCount.intValue()==relocationTime.intValue()){
