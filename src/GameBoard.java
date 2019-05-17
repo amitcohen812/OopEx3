@@ -4,11 +4,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.lang.ref.SoftReference;
 import java.nio.file.Files;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 
-public class GameBoard{
+public class GameBoard extends Observable{
     private String pathToBoards;
     private String isDeterministic;
     public static char [][] gameBoard;
@@ -78,4 +77,13 @@ public class GameBoard{
             //endgame - needs to complete
         }
     }
+
+    public void gameTick(){
+        setChanged();
+        notifyObservers();
+    }
+
+
+
+
 }
