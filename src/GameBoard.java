@@ -1,6 +1,8 @@
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class GameBoard{
     private String pathToBoards;
@@ -26,15 +28,22 @@ public class GameBoard{
 
     }
 
-    private void distinguishChar(char c){ //checks what kind of slot it is, enemy, player etc..., updates gameunit list
-
-    }
-    private void scanBoard(){ //iterates the whole game board
-        for (int i=0;i<gameBoard.length;i=i+1){
-            for (int j=0;j<gameBoard[i].length;j=j+1){
-                distinguishChar(gameBoard[i][j]);
+    private void distinguishChar(LinkedList<Character> listOfCopm){ //checks what kind of slot it is, enemy, player etc..., updates gameunit list
+        for (Character c: listOfCopm)
+        {
+            if (c!='.'&c!='#'&c!='@'){
+                
             }
         }
+    }
+    private void scanBoard(){ //iterates the whole game board
+        LinkedList<Character> listOfComp=new LinkedList<>();
+        for (int i=0;i<gameBoard.length;i=i+1){
+            for (int j=0;j<gameBoard[i].length;j=j+1){
+                listOfComp.addFirst(gameBoard[i][j]);
+            }
+        }
+        distinguishChar(listOfComp);
     }
 
     public static void combat(Player attacker, Enemy defender){
