@@ -16,17 +16,20 @@ public class GameBoard extends Observable{
     public static Player player;
     private LinkedList<Enemy> possibleEnemies;
     public static boolean endTheGame=false;
+    private LinkedList<Player> possiblePlayers;
 
     public GameBoard(String pathToBoards,String isDeterministic){
         this.pathToBoards=pathToBoards;
         this.isDeterministic=isDeterministic;
         initEnemies();
+        initPlayers();
         buildBoard();
         scanBoard();
     }
     public GameBoard(String pathToBoards){
         this.pathToBoards=pathToBoards;
         initEnemies();
+        initPlayers();
         buildBoard();
         scanBoard();
     }
@@ -46,6 +49,21 @@ public class GameBoard extends Observable{
         catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    private void initPlayers(){
+        possiblePlayers=new LinkedList<>();
+        Warrior jonSnow=new Warrior(6,"Jon Snow",new Health(300,300),30,4);
+        Warrior hound=new Warrior(4,"The Hound",new Health(400,400),20,6);
+        Mage melisandre =new Mage("Melisandre",new Health(160,160),10,1,40,300,30,5,6);
+        Mage thoros=new Mage("Thoros Of Myr",new Health(250,250),25,3,15,150,50,3,3);
+        Rogue aryaStark=new Rogue("Arya Stark",new Health(150,150),40,2,20);
+        Rogue bronn =new Rogue("Bronn",new Health(250,250),35,3,60);
+        possiblePlayers.addFirst(jonSnow);
+        possiblePlayers.addFirst(hound);
+        possiblePlayers.addFirst(melisandre);
+        possiblePlayers.addFirst(thoros);
+        possiblePlayers.addFirst(aryaStark);
+        possiblePlayers.addFirst(bronn);
     }
     private void initEnemies(){
         possibleEnemies=new LinkedList<>();
@@ -122,7 +140,10 @@ public class GameBoard extends Observable{
         notifyObservers();
     }
 
-
-
-
+    public String getIsDeterministic() {
+        return isDeterministic;
+    }
+    public LinkedList<Player> getPossiblePlayers(){
+        return this.possiblePlayers;
+    }
 }
