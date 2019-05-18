@@ -25,4 +25,9 @@ public abstract class Player extends GameUnit {
     public void attack(GameUnit enemy){
         super.attack(this,enemy);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Experience: "+experience+"Level: "+level;
+    }
 }

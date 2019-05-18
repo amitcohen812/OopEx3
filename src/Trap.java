@@ -54,4 +54,10 @@ public class Trap extends Enemy {
     public  void showTrap(){
         hidden=false;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Relocation Range: "+relocationRange+"Relocation Time: "+relocationTime
+                +"Visibility Time: "+visibilityTime;
+    }
 }

@@ -31,4 +31,9 @@ public class Warrior extends Player {
     public void gameTick(){
         this.remaining=this.remaining-1;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Cooldown: "+cooldown+"Remaining: "+remaining;
+    }
 }
