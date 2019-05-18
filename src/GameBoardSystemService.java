@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class GameBoardSystemService {
 
@@ -16,14 +17,37 @@ public class GameBoardSystemService {
             b.addObserver(e);
         }
         LinkedList<Player> possiblePlayers=b.getPossiblePlayers();
+        int count=1;
         for (Player player :possiblePlayers){
-            System.out.println(player);
+            System.out.println(count+" "+player);
+            count++;
         }
         System.out.println("Enter a number to choose a player");
+        Scanner reader=new Scanner(System.in);
+        int choice=reader.nextInt();
+        GameBoard.player=possiblePlayers.get(choice-1);
+        Player player=GameBoard.player;
+        GameBoard.player.position=GameBoard.playerPosition;
+        System.out.println("you chose: "+GameBoard.player);
+        System.out.println(b);
+        System.out.println("For you to know! w - move up, s - move down, a - move left, d - move right" +
+                "e - cast special ability, q - quit your turn");
         while (!GameBoard.endTheGame){
             //play!
+            System.out.println("use w/a/s/d/q/e to play");
+            char c=reader.next().charAt(0);
+            switch (c){
+                case 'w': player.moveUp();
+                case 's':player.moveDown();
+                case 'a':player.moveLeft();
+                case 'd':player.moveRight();
+                case  'e': player.castSpecialAbility();
+            }
             b.gameTick();
+            System.out.println(b);
+            System.out.println(player);
         }
+
 
     }
 }

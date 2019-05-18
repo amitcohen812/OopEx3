@@ -37,6 +37,6 @@ public class Rogue extends Player {
 
     @Override
     public String toString() {
-        return super.toString()+"Current Energy: "+currentEnergy+"Cost: "+cost;
+        return super.toString()+" Current Energy: "+currentEnergy+" Cost: "+cost;
     }
 }

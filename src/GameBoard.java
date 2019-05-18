@@ -109,8 +109,6 @@ public class GameBoard extends Observable{
                 }
                 if (c=='@'){
                     playerPosition=new Point(j,i);
-                    player=new Warrior(2,"amit",new Health(400,400),50,40);
-                    player.position=new Point(j,i);
                 }
             }
         }

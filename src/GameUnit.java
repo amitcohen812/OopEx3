@@ -47,7 +47,7 @@ public abstract class GameUnit {
 
     @Override
     public String toString() {
-        return "Name: "+name+" Health:"+health.getCurrentHealth()+"/"+health.getHealthPool()+"Attack points :"+attackPoints
-                +"Defense points :"+defensePoints;
+        return "Name: "+name+" Health: "+health.getCurrentHealth()+"/"+health.getHealthPool()+" Attack points: "+attackPoints
+                +" Defense points: "+defensePoints;
     }
 }

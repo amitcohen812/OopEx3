@@ -17,6 +17,7 @@ public abstract class Player extends GameUnit {
     public Player(String name, Health health, Integer attackPoints, Integer defensePoints) {
         super(name, health, attackPoints, defensePoints);
         this.level = 1;
+        this.experience=0;
     }
 
     public void castSpecialAbility() {
@@ -28,6 +29,6 @@ public abstract class Player extends GameUnit {
 
     @Override
     public String toString() {
-        return super.toString()+"Experience: "+experience+"Level: "+level;
+        return super.toString()+" Experience: "+experience+" Level: "+level;
     }
 }

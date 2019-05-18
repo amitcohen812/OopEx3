@@ -57,7 +57,7 @@ public class Trap extends Enemy {
 
     @Override
     public String toString() {
-        return super.toString()+"Relocation Range: "+relocationRange+"Relocation Time: "+relocationTime
-                +"Visibility Time: "+visibilityTime;
+        return super.toString()+" Relocation Range: "+relocationRange+" Relocation Time: "+relocationTime
+                +" Visibility Time: "+visibilityTime;
     }
 }
