@@ -44,4 +44,10 @@ public abstract class GameUnit {
         if (position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.')
             this.position.y=this.position.y+1;
     }
+
+    @Override
+    public String toString() {
+        return "Name: "+name+" Health:"+health.getCurrentHealth()+"/"+health.getHealthPool()+"Attack points :"+attackPoints
+                +"Defense points :"+defensePoints;
+    }
 }

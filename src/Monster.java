@@ -45,5 +45,8 @@ public class Monster extends Enemy {
         }
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString()+"Vision range: "+visionRange;
+    }
 }

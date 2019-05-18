@@ -59,4 +59,10 @@ public class Mage extends Player {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Spell power: "+spellPower+"Mana: "+currentMana+"/"+manaPool+"Cost: "+cost
+                +"Hit times"+hitTimes+"Range:"+range;
+    }
 }

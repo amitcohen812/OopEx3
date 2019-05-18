@@ -73,4 +73,8 @@ public abstract class Enemy extends GameUnit implements Observer {
         }
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+"Experience value: "+experienceValue+"Tile: "+tile;
+    }
 }

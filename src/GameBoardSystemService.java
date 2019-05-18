@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class GameBoardSystemService {
 
     public static void main(String [] args){
@@ -13,6 +15,11 @@ public class GameBoardSystemService {
         for (Enemy e : GameBoard.gameUnits) {
             b.addObserver(e);
         }
+        LinkedList<Player> possiblePlayers=b.getPossiblePlayers();
+        for (Player player :possiblePlayers){
+            System.out.println(player);
+        }
+        System.out.println("Enter a number to choose a player");
         while (!GameBoard.endTheGame){
             //play!
             b.gameTick();
