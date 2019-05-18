@@ -13,9 +13,6 @@ public class GameBoardSystemService {
         else {
             b=new GameBoard(args[0]);
         }
-        for (Enemy e : GameBoard.gameUnits) {
-            b.addObserver(e);
-        }
         LinkedList<Player> possiblePlayers=b.getPossiblePlayers();
         int count=1;
         for (Player player :possiblePlayers){
@@ -37,17 +34,18 @@ public class GameBoardSystemService {
             System.out.println("use w/a/s/d/q/e to play");
             char c=reader.next().charAt(0);
             switch (c){
-                case 'w': player.moveUp();
-                case 's':player.moveDown();
-                case 'a':player.moveLeft();
-                case 'd':player.moveRight();
-                case  'e': player.castSpecialAbility();
+                case 'w': player.moveUp();break;
+                case 's':player.moveDown();break;
+                case 'a':player.moveLeft();break;
+                case 'd':player.moveRight();break;
+                case 'e': player.castSpecialAbility();break;
+                default:
+                    System.out.println("You didn't move"); break;
             }
             b.gameTick();
             System.out.println(b);
             System.out.println(player);
+            reader=new Scanner(System.in);
         }
-
-
     }
 }

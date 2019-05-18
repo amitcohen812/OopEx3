@@ -1,9 +1,7 @@
 
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
 
-public abstract class Enemy extends GameUnit implements Observer {
+public abstract class Enemy extends GameUnit {
 
     private Integer experienceValue;
     private char tile;
@@ -35,16 +33,11 @@ public abstract class Enemy extends GameUnit implements Observer {
 
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        gameTick();
-
-    }
     protected void moveLeft(){
         super.moveLeft();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x-1;
-        if (tempPos==GameBoard.playerPosition){
+        if (tempPos==GameBoard.player.position){
             GameBoard.combat(this,GameBoard.player);
         }
     }
@@ -52,7 +45,7 @@ public abstract class Enemy extends GameUnit implements Observer {
        super.moveRight();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x+1;
-        if (tempPos==GameBoard.playerPosition){
+        if (tempPos==GameBoard.player.position){
             GameBoard.combat(this,GameBoard.player);
         }
     }
@@ -60,7 +53,7 @@ public abstract class Enemy extends GameUnit implements Observer {
         super.moveUp();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y-1;
-        if (tempPos==GameBoard.playerPosition){
+        if (tempPos==GameBoard.player.position){
             GameBoard.combat(this,GameBoard.player);
         }
     }
@@ -68,7 +61,7 @@ public abstract class Enemy extends GameUnit implements Observer {
         super.moveDown();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y+1;
-        if (tempPos==GameBoard.playerPosition){
+        if (tempPos==GameBoard.player.position){
             GameBoard.combat(this,GameBoard.player);
         }
     }

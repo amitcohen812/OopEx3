@@ -1,8 +1,9 @@
 
 import java.awt.*;
+import java.util.Observable;
 import java.util.Random;
 
-public abstract class GameUnit {
+public abstract class GameUnit extends Observable {
     protected String name;
     protected Health health;
     protected Integer attackPoints;
@@ -29,20 +30,30 @@ public abstract class GameUnit {
             defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
     }
     protected void moveLeft(){
-        if (position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.')
-            this.position.x=this.position.x-1;
+        if (position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.') {
+            this.position.x = this.position.x - 1;
+            setChanged();
+            notifyObservers();
+        }
     }
     protected void moveRight(){
-        if (GameBoard.gameBoard[position.y].length<position.x+1&&GameBoard.gameBoard[position.y][position.x+1]=='.')
-            this.position.x=this.position.x+1;
+        if (GameBoard.gameBoard[position.y].length<position.x+1&&GameBoard.gameBoard[position.y][position.x+1]=='.') {
+            this.position.x = this.position.x + 1;
+            setChanged();
+            notifyObservers();
+        }
     }
     protected void moveUp(){
-        if (position.y>0&&GameBoard.gameBoard[position.y-1][position.x]=='.')
-            this.position.y= this.position.y-1;
+        if (position.y>0&&GameBoard.gameBoard[position.y-1][position.x]=='.') {
+            this.position.y = this.position.y - 1;
+            setChanged();notifyObservers();
+        }
     }
     protected void moveDown(){
-        if (position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.')
-            this.position.y=this.position.y+1;
+        if (position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.') {
+            this.position.y = this.position.y + 1;
+            setChanged();notifyObservers();
+        }
     }
 
     @Override

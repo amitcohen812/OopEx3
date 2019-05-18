@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
 
-public class GameBoard extends Observable{
+public class GameBoard implements Observer{
     private String pathToBoards;
     private String isDeterministic;
     public static char [][] gameBoard;
@@ -104,8 +104,9 @@ public class GameBoard extends Observable{
                     if (e.getTile()==c)
                         if (e instanceof Monster){
                             gameUnits.addFirst(new Monster((Monster) e,new Point(j,i)));
+                            gameUnits.get(0).addObserver(this);
                         }
-                    else gameUnits.addFirst(new Trap((Trap) e,new Point(j,i)));
+                    else{ gameUnits.addFirst(new Trap((Trap) e,new Point(j,i)));gameUnits.get(0).addObserver(this);}
                 }
                 if (c=='@'){
                     playerPosition=new Point(j,i);
@@ -134,8 +135,6 @@ public class GameBoard extends Observable{
     public void gameTick(){
         for (Enemy enemy :gameUnits)
             enemy.gameTick();
-        setChanged();
-        notifyObservers();
     }
 
     public String getIsDeterministic() {
@@ -155,5 +154,12 @@ public class GameBoard extends Observable{
             output+="\n";
         }
         return output;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (possibleEnemies.contains(o))
+            gameBoard[((GameUnit) o).position.y][((GameUnit) o).position.x]=((Enemy) o).getTile();
+        else player.position=((GameUnit) o).position;
     }
 }

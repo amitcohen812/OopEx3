@@ -36,10 +36,10 @@ public class Monster extends Enemy {
             Random rnd=new Random();
             int index=rnd.nextInt(5);
             switch (index){
-                case 0:moveLeft();
-                case 1: moveDown();
-                case 2:moveRight();
-                case 3:moveUp();
+                case 0:moveLeft();break;
+                case 1: moveDown();break;
+                case 2:moveRight();break;
+                case 3:moveUp();break;
                 //stay still - 4
             }
         }
