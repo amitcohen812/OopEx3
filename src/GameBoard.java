@@ -146,4 +146,16 @@ public class GameBoard extends Observable{
     public LinkedList<Player> getPossiblePlayers(){
         return this.possiblePlayers;
     }
+
+    @Override
+    public String toString() {
+        String output="";
+        for (int i=0;i<gameBoard.length;i=i+1){
+            for (int j=0;j<gameBoard[i].length;j=j+1){
+                output+=gameBoard[i][j];
+            }
+            output+="\n";
+        }
+        return output;
+    }
 }
