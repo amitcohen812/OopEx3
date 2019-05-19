@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Rogue extends Player {
 
     private Integer cost;
@@ -27,11 +29,14 @@ public class Rogue extends Player {
         }
         else
         {
+            LinkedList<Enemy> toAttack=new LinkedList<>();
             this.currentEnergy=this.currentEnergy-this.cost;
             for(Enemy e: GameBoard.gameUnits){
                 if (e.euclideanDistance(e.position,this.position)<range)
-                    GameBoard.combat(this,e);
+                    toAttack.addFirst(e);
             }
+            for (Enemy enemy :toAttack)
+                GameBoard.combat(this,enemy);
         }
         return true;
     }

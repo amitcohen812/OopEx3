@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.LinkedList;
 
 public abstract class Player extends GameUnit {
 
@@ -39,24 +40,60 @@ public abstract class Player extends GameUnit {
     @Override
     protected void moveDown() {
         super.moveDown();
+        Point tempPos=new Point(position.x,position.y);
+        tempPos.y=tempPos.y+1;
+        Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
+        for (Enemy enemy :GameBoard.gameUnits) {
+            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+                toAttack=enemy;
+        }
+        if (!toAttack.name.equals("temp"))
+            GameBoard.combat(this,toAttack);
         gameTick();
     }
 
     @Override
     protected void moveLeft() {
         super.moveLeft();
+        Point tempPos=new Point(position.x,position.y);
+        tempPos.x=tempPos.x-1;
+        Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
+        for (Enemy enemy :GameBoard.gameUnits) {
+            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+                toAttack=enemy;
+        }
+        if (!toAttack.name.equals("temp"))
+            GameBoard.combat(this,toAttack);
         gameTick();
     }
 
     @Override
     protected void moveRight() {
         super.moveRight();
+        Point tempPos=new Point(position.x,position.y);
+        tempPos.x=tempPos.x+1;
+        Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
+        for (Enemy enemy :GameBoard.gameUnits) {
+            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+                toAttack=enemy;
+        }
+        if (!toAttack.name.equals("temp"))
+            GameBoard.combat(this,toAttack);
         gameTick();
     }
 
     @Override
     protected void moveUp() {
         super.moveUp();
+        Point tempPos=new Point(position.x,position.y);
+        tempPos.y=tempPos.y-1;
+        Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
+        for (Enemy enemy :GameBoard.gameUnits) {
+            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+                toAttack=enemy;
+        }
+        if (!toAttack.name.equals("temp"))
+            GameBoard.combat(this,toAttack);
         gameTick();
     }
 }
