@@ -40,20 +40,18 @@ public class Trap extends Enemy {
             }
             Random rnd =new Random();
             this.position=optPoints.get(rnd.nextInt(optPoints.size()));
+            setChanged();
+            notifyObservers();
         }
         else {
             ticksCount=ticksCount+1;
-            if (this.euclideanDistance(this.position,GameBoard.playerPosition)<2) {
+            if (this.euclideanDistance(this.position,GameBoard.player.position)<2) {
                 GameBoard.combat(this, GameBoard.player);
             }
         }
         if (ticksCount<visibilityTime)
-            showTrap();
-        else hidden=true;
-    }
-
-    public  void showTrap(){
-        hidden=false;
+            GameBoard.gameBoard[position.y][position.x]=this.getTile();
+        else GameBoard.gameBoard[position.y][position.x]='.';
     }
 
     @Override
