@@ -34,7 +34,7 @@ public class Trap extends Enemy {
             LinkedList<Point> optPoints=new LinkedList<>();
             for (int i=0;i<GameBoard.gameBoard.length;i=i+1){
                 for (int j=0;j<GameBoard.gameBoard[i].length;j=j+1){
-                    if (this.euclideanDistance(this.position,new Point(j,i))<2&GameBoard.gameBoard[j][i]=='.')
+                    if (this.euclideanDistance(this.position,new Point(j,i))<2&GameBoard.gameBoard[i][j]=='.')
                         optPoints.addFirst(new Point(j,i));
                 }
             }
