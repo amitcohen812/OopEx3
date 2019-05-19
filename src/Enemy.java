@@ -23,7 +23,8 @@ public abstract class Enemy extends GameUnit {
     }
 
     public void attack(GameUnit player){
-        super.attack(this,player);
+        int damage=super.attack(this,player);
+        GameBoardSystemService.onEnemyAttack(damage);
     }
 
     public char getTile() {

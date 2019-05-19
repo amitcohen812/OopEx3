@@ -17,6 +17,7 @@ public class GameBoard implements Observer{
     private LinkedList<Enemy> possibleEnemies;
     public static boolean endTheGame=false;
     private LinkedList<Player> possiblePlayers;
+    private boolean moveToNextLevel=false;
 
     public GameBoard(String pathToBoards,String isDeterministic){
         this.pathToBoards=pathToBoards;
@@ -33,6 +34,7 @@ public class GameBoard implements Observer{
         buildBoard();
         scanBoard();
     }
+    public void moveToNextLevel(){}
 
     public  void buildBoard(){ //reads the file from the path and builds the board
         File file =new File(pathToBoards);
@@ -120,6 +122,7 @@ public class GameBoard implements Observer{
        if (defender.health.getCurrentHealth()<=0) {
            gameUnits.remove(defender);
            attacker.experience+=defender.getExperienceValue();
+           gameBoard[defender.position.y][defender.position.x]='.';
        }
     }
     public static void combat(Enemy attacker,Player defender){

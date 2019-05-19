@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Rogue extends Player {
 
     private Integer cost;
@@ -21,18 +23,22 @@ public class Rogue extends Player {
         this.currentEnergy=Math.min(this.currentEnergy+10,100);
     }
 
-    public void castSpecialAbility(){
-        if (currentEnergy<cost){ //should not print here!
-            System.out.println("Error, not enough energy!");
+    public boolean castSpecialAbility(){
+        if (currentEnergy<cost){
+            return false;
         }
         else
         {
+            LinkedList<Enemy> toAttack=new LinkedList<>();
             this.currentEnergy=this.currentEnergy-this.cost;
             for(Enemy e: GameBoard.gameUnits){
                 if (e.euclideanDistance(e.position,this.position)<range)
-                    GameBoard.combat(this,e);
+                    toAttack.addFirst(e);
             }
+            for (Enemy enemy :toAttack)
+                GameBoard.combat(this,enemy);
         }
+        return true;
     }
 
     @Override

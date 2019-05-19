@@ -21,13 +21,14 @@ public abstract class GameUnit extends Observable {
         return Math.sqrt((first.x-second.x)*(first.x-second.x)+(first.y-second.y)*(first.y-second.y));
     }
 
-    protected void attack(GameUnit attacker,GameUnit defender){
+    protected int attack(GameUnit attacker,GameUnit defender){
         Random rnd=new Random();
         int attackPoints=rnd.nextInt(attacker.attackPoints+1);
         int defendPoints=rnd.nextInt(defender.defensePoints+1);
         int damage=attackPoints-defendPoints;
         if (damage>0)
             defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
+        return damage;
     }
     protected void moveLeft(){
         if (position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.') {
