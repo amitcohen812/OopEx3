@@ -34,6 +34,6 @@ public class Warrior extends Player {
 
     @Override
     public String toString() {
-        return super.toString()+"Cooldown: "+cooldown+"Remaining: "+remaining;
+        return super.toString()+" Cooldown: "+cooldown+" Remaining: "+remaining;
     }
 }
