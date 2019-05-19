@@ -31,4 +31,28 @@ public abstract class Player extends GameUnit {
     public String toString() {
         return super.toString()+" Experience: "+experience+" Level: "+level;
     }
+
+    public void gameTick(){}
+    @Override
+    protected void moveDown() {
+        super.moveDown();
+    }
+
+    @Override
+    protected void moveLeft() {
+        super.moveLeft();
+        gameTick();
+    }
+
+    @Override
+    protected void moveRight() {
+        super.moveRight();
+        gameTick();
+    }
+
+    @Override
+    protected void moveUp() {
+        super.moveUp();
+        gameTick();
+    }
 }
