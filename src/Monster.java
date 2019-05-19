@@ -18,7 +18,7 @@ public class Monster extends Enemy {
         this.visionRange=e.visionRange;
     }
     public void gameTick(){ //traversing around the board, chase if in range
-        Point playerPosition=GameBoard.playerPosition;
+        Point playerPosition=GameBoard.player.position;
         if (this.euclideanDistance(this.position,playerPosition)<visionRange){
             int dx=this.position.x-playerPosition.x;
             int dy=this.position.y-playerPosition.y;

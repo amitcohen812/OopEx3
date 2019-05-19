@@ -37,7 +37,7 @@ public abstract class Enemy extends GameUnit {
         super.moveLeft();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x-1;
-        if (tempPos==GameBoard.player.position){
+        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
             GameBoard.combat(this,GameBoard.player);
         }
     }
@@ -45,7 +45,7 @@ public abstract class Enemy extends GameUnit {
        super.moveRight();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x+1;
-        if (tempPos==GameBoard.player.position){
+        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
             GameBoard.combat(this,GameBoard.player);
         }
     }
@@ -53,7 +53,7 @@ public abstract class Enemy extends GameUnit {
         super.moveUp();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y-1;
-        if (tempPos==GameBoard.player.position){
+        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
             GameBoard.combat(this,GameBoard.player);
         }
     }
@@ -61,7 +61,7 @@ public abstract class Enemy extends GameUnit {
         super.moveDown();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y+1;
-        if (tempPos==GameBoard.player.position){
+        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
             GameBoard.combat(this,GameBoard.player);
         }
     }
