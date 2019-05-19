@@ -31,7 +31,7 @@ public abstract class GameUnit extends Observable {
         return damage;
     }
     protected void moveLeft(){
-        if (position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.') {
+        if (checkForInvisibleTrap(new Point(position.x-1,position.y))&position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.') {
             clearSpot();
             this.position.x = this.position.x - 1;
             setChanged();
@@ -39,7 +39,7 @@ public abstract class GameUnit extends Observable {
         }
     }
     protected void moveRight(){
-        if (GameBoard.gameBoard[position.y].length>position.x+1&&GameBoard.gameBoard[position.y][position.x+1]=='.') {
+        if (checkForInvisibleTrap(new Point(position.x+1,position.y))&GameBoard.gameBoard[position.y].length>position.x+1&&GameBoard.gameBoard[position.y][position.x+1]=='.') {
             clearSpot();
             this.position.x = this.position.x + 1;
             setChanged();
@@ -47,7 +47,7 @@ public abstract class GameUnit extends Observable {
         }
     }
     protected void moveUp(){
-        if (position.y>0&&GameBoard.gameBoard[position.y-1][position.x]=='.') {
+        if (checkForInvisibleTrap(new Point(position.x,position.y-1))&position.y>0&&GameBoard.gameBoard[position.y-1][position.x]=='.') {
             clearSpot();
             this.position.y = this.position.y - 1;
             setChanged();
@@ -55,7 +55,7 @@ public abstract class GameUnit extends Observable {
         }
     }
     protected void moveDown(){
-        if (position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.') {
+        if (checkForInvisibleTrap(new Point(position.x,position.y+1))&position.y+1<GameBoard.gameBoard.length&&GameBoard.gameBoard[position.y+1][position.x]=='.') {
             clearSpot();
             this.position.y = this.position.y + 1;
             setChanged();
@@ -69,5 +69,12 @@ public abstract class GameUnit extends Observable {
     public String toString() {
         return "Name: "+name+" Health: "+health.getCurrentHealth()+"/"+health.getHealthPool()+" Attack points: "+attackPoints
                 +" Defense points: "+defensePoints;
+    }
+    private boolean checkForInvisibleTrap(Point position){
+        for (Enemy e : GameBoard.gameUnits) {
+            if (e.position.x == position.x & e.position.y == position.y)
+                return false;
+        }
+        return true;
     }
 }
