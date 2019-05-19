@@ -158,8 +158,11 @@ public class GameBoard implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        if (gameUnits.contains(o))//need to delete his last place and replace with '.';
+        if (gameUnits.contains(o))
             gameBoard[((GameUnit) o).position.y][((GameUnit) o).position.x]=((Enemy) o).getTile();
-        else player.position=((GameUnit) o).position;
+        else{
+            player.position=((GameUnit) o).position;
+            gameBoard[player.position.y][player.position.x]='@';
+        }
     }
 }

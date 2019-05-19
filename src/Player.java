@@ -36,6 +36,7 @@ public abstract class Player extends GameUnit {
     @Override
     protected void moveDown() {
         super.moveDown();
+        gameTick();
     }
 
     @Override

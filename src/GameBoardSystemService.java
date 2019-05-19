@@ -24,8 +24,9 @@ public class GameBoardSystemService {
         int choice=reader.nextInt();
         GameBoard.player=possiblePlayers.get(choice-1);
         Player player=GameBoard.player;
+        player.addObserver(b);
         GameBoard.player.position=GameBoard.playerPosition;
-        System.out.println("you chose: "+GameBoard.player);
+        System.out.println("you chose: "+player);
         System.out.println(b);
         System.out.println("For you to know! w - move up, s - move down, a - move left, d - move right" +
                 "e - cast special ability, q - quit your turn");
