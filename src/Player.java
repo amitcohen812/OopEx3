@@ -20,7 +20,8 @@ public abstract class Player extends GameUnit {
         this.experience=0;
     }
 
-    public void castSpecialAbility() {
+    public boolean castSpecialAbility() {
+        return false; // trash value
     }
 
     public void attack(GameUnit enemy){

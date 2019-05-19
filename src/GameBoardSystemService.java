@@ -1,7 +1,9 @@
 import java.util.LinkedList;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
-public class GameBoardSystemService {
+public class GameBoardSystemService{
 
     public static void main(String [] args){
         GameBoard b;
@@ -39,7 +41,12 @@ public class GameBoardSystemService {
                 case 's':player.moveDown();break;
                 case 'a':player.moveLeft();break;
                 case 'd':player.moveRight();break;
-                case 'e': player.castSpecialAbility();break;
+                case 'e':
+                    {
+                        boolean flag= player.castSpecialAbility();
+                        if (!flag) System.out.println("Could not cast special ability!");
+                        break;
+                    }
                 default:
                     System.out.println("You didn't move"); break;
             }

@@ -21,9 +21,9 @@ public class Rogue extends Player {
         this.currentEnergy=Math.min(this.currentEnergy+10,100);
     }
 
-    public void castSpecialAbility(){
-        if (currentEnergy<cost){ //should not print here!
-            System.out.println("Error, not enough energy!");
+    public boolean castSpecialAbility(){
+        if (currentEnergy<cost){
+            return false;
         }
         else
         {
@@ -33,6 +33,7 @@ public class Rogue extends Player {
                     GameBoard.combat(this,e);
             }
         }
+        return true;
     }
 
     @Override

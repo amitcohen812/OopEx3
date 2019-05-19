@@ -35,10 +35,10 @@ public class Mage extends Player {
     }
 
     @Override
-    public void castSpecialAbility()
+    public boolean castSpecialAbility()
     {
-        if (this.currentMana<this.cost){//printing should not be here!
-            System.out.println("Error, you don't have enough mana yet");
+        if (this.currentMana<this.cost){
+            return false;
         }
         else {
             this.currentMana=this.currentMana-cost;
@@ -58,6 +58,7 @@ public class Mage extends Player {
                 hits=hits+1;
             }
         }
+        return true;
     }
 
     @Override
