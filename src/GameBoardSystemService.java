@@ -6,7 +6,7 @@ public class GameBoardSystemService{
     public static void main(String [] args){
         GameBoard b;
         args=new String[1];
-        args[0]="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\levels\\level 1.txt";
+        args[0]="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\levels";
         if (args.length==2){
             b=new GameBoard(args[0],args[1]);
         }

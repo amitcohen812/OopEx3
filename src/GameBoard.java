@@ -17,27 +17,29 @@ public class GameBoard implements Observer{
     private LinkedList<Enemy> possibleEnemies;
     public static boolean endTheGame=false;
     private LinkedList<Player> possiblePlayers;
-    private boolean moveToNextLevel=false;
+    private static int level;
+    private static LinkedList<File> files;
 
     public GameBoard(String pathToBoards,String isDeterministic){
         this.pathToBoards=pathToBoards;
         this.isDeterministic=isDeterministic;
+        level=0;
         initEnemies();
         initPlayers();
-        buildBoard();
+        buildBoardList();
         scanBoard();
     }
     public GameBoard(String pathToBoards){
         this.pathToBoards=pathToBoards;
+        level=0;
         initEnemies();
         initPlayers();
-        buildBoard();
+        buildBoardList();
         scanBoard();
     }
     public void moveToNextLevel(){}
 
-    public  void buildBoard(){ //reads the file from the path and builds the board
-        File file =new File(pathToBoards);
+    public static void buildBoard(File file){ //reads the file from the path and builds the board
         List<String> lines;
         try {
             lines=Files.readAllLines(file.toPath());
@@ -51,6 +53,23 @@ public class GameBoard implements Observer{
         catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    private void buildBoardList(){
+        files=new LinkedList<>();
+        File file =new File(pathToBoards);
+        if (file.isDirectory()) {
+            File[] listOfFiles = file.listFiles();
+            try {
+                for (File f : listOfFiles) {
+                    if (f.isFile())
+                        files.addLast(f);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            buildBoard(files.get(level));
+        }
+        else System.out.println("problem");
     }
     private void initPlayers(){
         possiblePlayers=new LinkedList<>();
@@ -123,6 +142,13 @@ public class GameBoard implements Observer{
            gameUnits.remove(defender);
            attacker.experience+=defender.getExperienceValue();
            gameBoard[defender.position.y][defender.position.x]='.';
+           if (gameUnits.size()==0){
+               level++;
+               if (level+1==files.size())
+                   endTheGame=true;//missing winning statement
+                else buildBoard(files.get(level));
+           }
+
        }
     }
     public static void combat(Enemy attacker,Player defender){
