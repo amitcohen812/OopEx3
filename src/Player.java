@@ -12,6 +12,7 @@ public abstract class Player extends GameUnit {
         this.health.setCurrentHealth(this.health.getHealthPool());
         this.attackPoints = this.attackPoints + 5 * level;
         this.defensePoints = this.defensePoints + 2 * level;
+        GameBoardSystemService.onLevelUp();
     }
 
     public Player(String name, Health health, Integer attackPoints, Integer defensePoints) {
@@ -25,7 +26,8 @@ public abstract class Player extends GameUnit {
     }
 
     public void attack(GameUnit enemy){
-        super.attack(this,enemy);
+        int damage=super.attack(this,enemy);
+        GameBoardSystemService.onPlayerAttack(damage);
     }
 
     @Override

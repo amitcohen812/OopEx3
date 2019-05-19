@@ -1,6 +1,4 @@
 import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Scanner;
 
 public class GameBoardSystemService{
@@ -36,6 +34,7 @@ public class GameBoardSystemService{
             //play!
             System.out.println("use w/a/s/d/q/e to play");
             char c=reader.next().charAt(0);
+            boolean flag=true;
             switch (c){
                 case 'w': player.moveUp();break;
                 case 's':player.moveDown();break;
@@ -43,17 +42,33 @@ public class GameBoardSystemService{
                 case 'd':player.moveRight();break;
                 case 'e':
                     {
-                        boolean flag= player.castSpecialAbility();
+                        flag= player.castSpecialAbility();
                         if (!flag) System.out.println("Could not cast special ability!");
+                        else player.gameTick();
                         break;
                     }
                 default:
                     System.out.println("You didn't move"); break;
             }
-            b.gameTick();
+            if (flag)
+                b.gameTick();
+            else System.out.println("nothing has changed, ability usage didn't work");
             System.out.println(b);
             System.out.println(player);
             reader=new Scanner(System.in);
         }
+    }
+    public static void onLevelUp(){
+        System.out.println("Player leveled up!");
+    }
+    public static void onEnemyAttack(int damage){
+        if (damage<0)
+            damage=0;
+        System.out.println("An enemy attacked you with the damage of: "+damage);
+    }
+    public static void onPlayerAttack(int damage){
+        if (damage<0)
+            damage=0;
+        System.out.println("You attacked an Enemy with the damage of :"+damage);
     }
 }

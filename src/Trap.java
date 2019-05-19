@@ -43,8 +43,9 @@ public class Trap extends Enemy {
         }
         else {
             ticksCount=ticksCount+1;
-            if (this.euclideanDistance(this.position,GameBoard.playerPosition)<2)
-                GameBoard.combat(this,GameBoard.player);
+            if (this.euclideanDistance(this.position,GameBoard.playerPosition)<2) {
+                GameBoard.combat(this, GameBoard.player);
+            }
         }
         if (ticksCount<visibilityTime)
             showTrap();
