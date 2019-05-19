@@ -37,7 +37,6 @@ public class GameBoard implements Observer{
         buildBoardList();
         scanBoard();
     }
-    public void moveToNextLevel(){}
 
     public static void buildBoard(File file){ //reads the file from the path and builds the board
         List<String> lines;
