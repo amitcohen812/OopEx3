@@ -1,21 +1,55 @@
 import java.io.File;
+import java.nio.file.Files;
+import java.util.List;
 
-public class DeterministicMode {
+
+public class DeterministicMode implements ActionReader,RandomGenerator {
     private final String pathToNumbers="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\deterministicMode\\random_numbers.txt";
     private final  String pathToActions="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\deterministicMode\\user_actions.txt";
-    private File actions;
-    private File numbers;
+    private List<String> actions;
+    private List<String> numbers;
+    private String nextAction;
+    private String nextNum;
+    private int currentAct=0;
+    private int currentNum=0;
 
     public DeterministicMode(){
-        actions=new File(pathToActions);
-        numbers=new File(pathToNumbers);
+        try {
+            actions= Files.readAllLines(new File(pathToActions).toPath());
+            nextAction=actions.get(currentAct);
+            currentAct++;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        try {
+            numbers=Files.readAllLines(new File(pathToNumbers).toPath());
+            nextNum=numbers.get(currentNum);
+            currentNum++;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    public File getActions() {
-        return actions;
+
+    @Override
+    public String nextAction() {
+        String temp=nextAction;
+        nextAction=actions.get(currentAct);
+        currentAct++;
+        return temp;
     }
 
-    public File getNumbers() {
-        return numbers;
+    @Override
+    public int nextInt(int n) {
+        int temp=nextNum.charAt(0)-'0';
+        nextNum=numbers.get(currentNum);
+        currentNum++;
+        return temp;
+    }
+
+    public boolean hasNext(){
+        return actions.size()>currentAct;
     }
 }

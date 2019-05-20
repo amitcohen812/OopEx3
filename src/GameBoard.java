@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GameBoard implements Observer{
     private String pathToBoards;
-    private String isDeterministic;
+    public static String isDeterministic;
     public static char [][] gameBoard;
     public static LinkedList<Enemy> gameUnits;
     public static Point playerPosition;
@@ -20,9 +20,9 @@ public class GameBoard implements Observer{
     private static int level;
     private static LinkedList<File> files;
 
-    public GameBoard(String pathToBoards,String isDeterministic){
+    public GameBoard(String pathToBoards,String deterministic){
         this.pathToBoards=pathToBoards;
-        this.isDeterministic=isDeterministic;
+        isDeterministic=deterministic;
         level=0;
         initEnemies();
         initPlayers();

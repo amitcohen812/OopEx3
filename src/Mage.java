@@ -51,11 +51,13 @@ public class Mage extends Player {
                     inRange.addFirst(curr);
                 }
             }
-            Random rnd=new Random();
-            Enemy toAttack=inRange.get(rnd.nextInt(inRange.size()));
-            while (hits<hitTimes){
-                GameBoard.combat(this,toAttack);
-                hits=hits+1;
+            if (inRange.size()>0) {
+                Random rnd = new Random();
+                Enemy toAttack = inRange.get(rnd.nextInt(inRange.size()));
+                while (hits < hitTimes) {
+                    GameBoard.combat(this, toAttack);
+                    hits = hits + 1;
+                }
             }
         }
         return true;

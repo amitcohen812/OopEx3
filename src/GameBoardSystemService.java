@@ -2,11 +2,16 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class GameBoardSystemService{
+    private static DeterministicMode dm;
 
     public static void main(String [] args){
         GameBoard b;
+        //args=new String[2];
+        //args[0]="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\levels";
+        //args[1]="-D";
         if (args.length==2){
             b=new GameBoard(args[0],args[1]);
+            buildDeterministic();
         }
         else {
             b=new GameBoard(args[0]);
@@ -28,10 +33,10 @@ public class GameBoardSystemService{
         System.out.println(b);
         System.out.println("For you to know! w - move up, s - move down, a - move left, d - move right" +
                 "e - cast special ability, q - quit your turn");
-        while (!GameBoard.endTheGame){
+        while (!GameBoard.endTheGame&(dm==null||dm.hasNext())){
             //play!
             System.out.println("use w/a/s/d/q/e to play");
-            char c=reader.next().charAt(0);
+            char c=nextAction();
             boolean flag=true;
             switch (c){
                 case 'w': player.moveUp();break;
@@ -53,7 +58,7 @@ public class GameBoardSystemService{
             else System.out.println("nothing has changed, ability usage didn't work");
             System.out.println(b);
             System.out.println(player);
-            reader=new Scanner(System.in);
+            //reader=new Scanner(System.in);
         }
     }
     public static void onLevelUp(){
@@ -68,5 +73,16 @@ public class GameBoardSystemService{
         if (damage<0)
             damage=0;
         System.out.println("You attacked an Enemy with the damage of :"+damage);
+    }
+    public static void buildDeterministic(){
+        dm=new DeterministicMode();
+    }
+
+    public static char nextAction() {
+        if (dm==null) {
+            Scanner reader = new Scanner(System.in);
+            return reader.next().charAt(0);
+        }
+        return dm.nextAction().charAt(0);
     }
 }
