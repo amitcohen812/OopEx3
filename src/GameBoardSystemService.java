@@ -57,6 +57,12 @@ public class GameBoardSystemService{
             System.out.println(player);
         }
     }
+    public static void onLosing(){
+        System.out.println("You died, better luck next time!");
+    }
+    public static void onWinning(){
+        System.out.println("You win!");
+    }
     public static void onLevelUp(){
         System.out.println("Player leveled up!");
     }
