@@ -31,7 +31,7 @@ public class Warrior extends Player {
     }
 
     public void gameTick(){
-        if (this.remaining-1>0)
+        if (this.remaining>0)
             this.remaining=this.remaining-1;
     }
 
