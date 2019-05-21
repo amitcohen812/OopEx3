@@ -94,7 +94,7 @@ public class GameBoard implements Observer{
         Monster bearWright=new Monster("Bear-Wright",new Health(1000,1000),75,30,250,'b',4);
         Monster giantWright=new Monster("Giant-Wright",new Health(1500,1500),100,40,500,'g',5);
         Monster whiteWalker=new Monster("White Walker",new Health(2000,2000),150,50,1000,'w',6);
-        Monster theMountain =new Monster("The Mountain",new Health(1000,1000),60,25,500,'M',6);
+        Monster theMountain =new Monster("The Mountain",new Health(10,10),60,25,500,'M',6);
         Monster queenCersei=new Monster("Queen Cersei",new Health(100,100),10,10,1000,'C',1);
         Monster knightKing=new Monster("Knight King",new Health(5000,5000),300,150,5000,'K',8);
         Trap bonusTrap=new Trap("Bonus Trap",new Health(1,1),1,1,250,'B',5,6,2);
@@ -115,7 +115,7 @@ public class GameBoard implements Observer{
         possibleEnemies.addFirst(deathTrap);
 
     }
-    private void scanBoard(){ //iterates the whole game board
+    public void scanBoard(){ //iterates the whole game board
         gameUnits=new LinkedList<>();
         for (int i=0;i<gameBoard.length;i=i+1){
             for (int j=0;j<gameBoard[i].length;j=j+1){
@@ -142,12 +142,11 @@ public class GameBoard implements Observer{
            attacker.experience+=defender.getExperienceValue();
            gameBoard[defender.position.y][defender.position.x]='.';
            if (gameUnits.size()==0){
-               level++;
                if (level+1==files.size()) {
                    endTheGame = true;
                    GameBoardSystemService.onWinning();
                }
-                else buildBoard(files.get(level));
+                else{ level++; buildBoard(files.get(level));}
            }
 
        }

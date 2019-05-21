@@ -53,6 +53,10 @@ public class GameBoardSystemService{
             if (flag)
                 b.gameTick();
             else System.out.println("nothing has changed, ability usage didn't work");
+            if (GameBoard.gameUnits.size()==0) {
+                b.scanBoard();
+                player.position=GameBoard.playerPosition;
+            }
             System.out.println(b);
             System.out.println(player);
         }

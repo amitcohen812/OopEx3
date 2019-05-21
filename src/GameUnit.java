@@ -12,7 +12,7 @@ public abstract class GameUnit extends Observable {
 
     public GameUnit(String name,Health health,Integer attackPoints,Integer defensePoints){
         this.name=name;
-        this.health=health;
+        this.health=new Health(health.getHealthPool(),health.getCurrentHealth());
         this.attackPoints=attackPoints;
         this.defensePoints=defensePoints;
     }
