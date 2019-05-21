@@ -14,6 +14,7 @@ public class Warrior extends Player {
         if (this.remaining>0)
             return false;
         else {
+            remaining=cooldown;
             if (this.health.getCurrentHealth() + 2 * this.defensePoints <= this.health.getHealthPool()) {
                 this.health.setCurrentHealth(this.health.getCurrentHealth() + 2 * this.defensePoints);
             } else this.health.setCurrentHealth(this.health.getHealthPool());
@@ -30,7 +31,8 @@ public class Warrior extends Player {
     }
 
     public void gameTick(){
-        this.remaining=this.remaining-1;
+        if (this.remaining-1>0)
+            this.remaining=this.remaining-1;
     }
 
     @Override
