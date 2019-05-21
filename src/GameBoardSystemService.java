@@ -7,9 +7,6 @@ public class GameBoardSystemService{
 
     public static void main(String [] args){
         GameBoard b;
-        args=new String[2];
-        args[0]="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\levels";
-        args[1]="-D";
         if (args.length==2){
             b=new GameBoard(args[0],args[1]);
             buildDeterministic();
