@@ -115,7 +115,7 @@ public class GameBoard implements Observer{
         possibleEnemies.addFirst(deathTrap);
 
     }
-    private void scanBoard(){ //iterates the whole game board
+    public void scanBoard(){ //iterates the whole game board
         gameUnits=new LinkedList<>();
         for (int i=0;i<gameBoard.length;i=i+1){
             for (int j=0;j<gameBoard[i].length;j=j+1){
@@ -142,10 +142,11 @@ public class GameBoard implements Observer{
            attacker.experience+=defender.getExperienceValue();
            gameBoard[defender.position.y][defender.position.x]='.';
            if (gameUnits.size()==0){
-               level++;
-               if (level+1==files.size())
-                   endTheGame=true;//missing winning statement
-                else buildBoard(files.get(level));
+               if (level+1==files.size()) {
+                   endTheGame = true;
+                   GameBoardSystemService.onWinning();
+               }
+                else{ level++; buildBoard(files.get(level));}
            }
 
        }
@@ -153,10 +154,9 @@ public class GameBoard implements Observer{
     public static void combat(Enemy attacker,Player defender){
         attacker.attack(defender);
         if (defender.health.getCurrentHealth()<=0){
-            // puts X on player and end the game.
             gameBoard[defender.position.y][defender.position.x]='X';
-            //endgame - needs to complete
             endTheGame=true;
+            GameBoardSystemService.onLosing();
         }
     }
 

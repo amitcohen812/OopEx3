@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class GameBoardSystemService{
@@ -6,9 +7,6 @@ public class GameBoardSystemService{
 
     public static void main(String [] args){
         GameBoard b;
-        //args=new String[2];
-        //args[0]="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\levels";
-        //args[1]="-D";
         if (args.length==2){
             b=new GameBoard(args[0],args[1]);
             buildDeterministic();
@@ -23,8 +21,7 @@ public class GameBoardSystemService{
             count++;
         }
         System.out.println("Enter a number to choose a player");
-        Scanner reader=new Scanner(System.in);
-        int choice=reader.nextInt();
+        int choice=nextAction()-'0';
         GameBoard.player=possiblePlayers.get(choice-1);
         Player player=GameBoard.player;
         player.addObserver(b);
@@ -56,10 +53,19 @@ public class GameBoardSystemService{
             if (flag)
                 b.gameTick();
             else System.out.println("nothing has changed, ability usage didn't work");
+            if (GameBoard.gameUnits.size()==0) {
+                b.scanBoard();
+                player.position=GameBoard.playerPosition;
+            }
             System.out.println(b);
             System.out.println(player);
-            //reader=new Scanner(System.in);
         }
+    }
+    public static void onLosing(){
+        System.out.println("You died, better luck next time!");
+    }
+    public static void onWinning(){
+        System.out.println("You win!");
     }
     public static void onLevelUp(){
         System.out.println("Player leveled up!");
@@ -84,5 +90,13 @@ public class GameBoardSystemService{
             return reader.next().charAt(0);
         }
         return dm.nextAction().charAt(0);
+    }
+
+    public static int nextNum(int n){
+        if (dm==null){
+            Random rnd=new Random();
+            return rnd.nextInt(n);
+        }
+        else return dm.nextInt(n);
     }
 }
