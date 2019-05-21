@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class GameBoardSystemService{
-    private static DeterministicMode dm;
+    public static DeterministicMode dm;
 
     public static void main(String [] args){
         GameBoard b;
@@ -33,7 +33,7 @@ public class GameBoardSystemService{
         System.out.println(b);
         System.out.println("For you to know! w - move up, s - move down, a - move left, d - move right" +
                 "e - cast special ability, q - quit your turn");
-        while (!GameBoard.endTheGame&(dm==null||dm.hasNext())){
+        while (!GameBoard.endTheGame&(dm==null||dm.hasNextAction())){
             //play!
             System.out.println("use w/a/s/d/q/e to play");
             char c=nextAction();

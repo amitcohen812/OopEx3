@@ -1,6 +1,8 @@
 import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 
 public class DeterministicMode implements ActionReader,RandomGenerator {
@@ -35,21 +37,36 @@ public class DeterministicMode implements ActionReader,RandomGenerator {
 
     @Override
     public String nextAction() {
-        String temp=nextAction;
-        nextAction=actions.get(currentAct);
-        currentAct++;
-        return temp;
+        if (GameBoard.isDeterministic!=null) {
+            String temp = nextAction;
+            nextAction = actions.get(currentAct);
+            currentAct++;
+            return temp;
+        }
+        else{
+            Scanner reader = new Scanner(System.in);
+            return reader.next();
+        }
     }
 
     @Override
     public int nextInt(int n) {
-        int temp=nextNum.charAt(0)-'0';
-        nextNum=numbers.get(currentNum);
-        currentNum++;
-        return temp;
+        if (GameBoard.isDeterministic!=null) {
+            int temp = nextNum.charAt(0) - '0';
+            nextNum = numbers.get(currentNum);
+            currentNum++;
+            return temp;
+        }
+        else {
+            Random rnd =new Random();
+            return rnd.nextInt(n);
+        }
     }
 
-    public boolean hasNext(){
+    public boolean hasNextAction(){
         return actions.size()>currentAct;
+    }
+    public boolean hasNextNum(){
+        return numbers.size()>currentNum;
     }
 }
