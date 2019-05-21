@@ -22,13 +22,18 @@ public abstract class GameUnit extends Observable {
     }
 
     protected int attack(GameUnit attacker,GameUnit defender){
-        Random rnd=new Random();
-        int attackPoints=rnd.nextInt(attacker.attackPoints+1);
-        int defendPoints=rnd.nextInt(defender.defensePoints+1);
-        int damage=attackPoints-defendPoints;
-        if (damage>0)
-            defender.health.setCurrentHealth(defender.health.getCurrentHealth()-damage);
-        return damage;
+        //Random rnd=new Random();
+        //int attackPoints=rnd.nextInt(attacker.attackPoints+1);
+        //int defendPoints=rnd.nextInt(defender.defensePoints+1);
+        try {
+            int attackPoints = GameBoardSystemService.nextNum(attacker.attackPoints + 1);
+            int defendPoints = GameBoardSystemService.nextNum(defender.defensePoints + 1);
+            int damage = attackPoints - defendPoints;
+            if (damage > 0)
+                defender.health.setCurrentHealth(defender.health.getCurrentHealth() - damage);
+            return damage;
+        }
+        catch (Exception e){return 0;}//numbers in text files ran out
     }
     protected void moveLeft(){
         if (checkForInvisibleTrap(new Point(position.x-1,position.y))&position.x>0&&GameBoard.gameBoard[position.y][position.x-1]=='.') {

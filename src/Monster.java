@@ -1,7 +1,5 @@
-import javafx.beans.InvalidationListener;
 
 import java.awt.*;
-import java.util.Observable;
 import java.util.Random;
 
 public class Monster extends Enemy {
@@ -33,8 +31,13 @@ public class Monster extends Enemy {
             }
         }
         else{
-            Random rnd=new Random();
-            int index=rnd.nextInt(5);
+            //Random rnd=new Random();
+            //int index=rnd.nextInt(5);
+            int index;
+            try {
+                index=GameBoardSystemService.nextNum(5);
+            }
+            catch (Exception e){Random rnd=new Random();index=rnd.nextInt(5);}//text file ran out of numbers
             switch (index){
                 case 0:super.moveLeft();break;
                 case 1: super.moveDown();break;
