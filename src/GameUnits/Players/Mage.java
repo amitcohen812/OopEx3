@@ -1,4 +1,7 @@
-import org.omg.CORBA.MARSHAL;
+package GameUnits.Players;
+import GameBoard.*;
+import GameUnits.Enemies.Enemy;
+import GameUnits.Health;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -12,7 +15,7 @@ public class Mage extends Player {
     private Integer hitTimes;
     private Integer range;
 
-    public  Mage(String name,Health health,Integer attackPoints,Integer defensePoints,Integer spellPower,Integer manaPool,Integer cost,Integer hitTimes,Integer range){
+    public  Mage(String name, Health health, Integer attackPoints, Integer defensePoints, Integer spellPower, Integer manaPool, Integer cost, Integer hitTimes, Integer range){
         super(name, health, attackPoints, defensePoints);
         this.spellPower=spellPower;
         this.manaPool=manaPool;
@@ -43,11 +46,11 @@ public class Mage extends Player {
         else {
             this.currentMana=this.currentMana-cost;
             int hits=0;
-            Iterator<Enemy>pos=GameBoard.gameUnits.iterator();
+            Iterator<Enemy>pos= GameBoard.gameUnits.iterator();
             LinkedList<Enemy> inRange=new LinkedList<>();
             while (pos.hasNext()){
                 Enemy curr=pos.next();
-                if (curr.euclideanDistance(this.position,curr.position)<range){
+                if (curr.euclideanDistance(this.position,curr.getPosition())<range){
                     inRange.addFirst(curr);
                 }
             }

@@ -1,3 +1,8 @@
+package GameUnits.Players;
+import GameBoard.*;
+import GameUnits.Enemies.Enemy;
+import GameUnits.Health;
+
 import java.util.LinkedList;
 
 public class Rogue extends Player {
@@ -6,7 +11,7 @@ public class Rogue extends Player {
     private Integer currentEnergy;
     private static final double range=2;
 
-    public Rogue(String name, Health health, Integer attackPoints, Integer defensePoints,Integer cost) {
+    public Rogue(String name, Health health, Integer attackPoints, Integer defensePoints, Integer cost) {
         super(name, health, attackPoints, defensePoints);
         this.cost=cost;
         this.currentEnergy=100;
@@ -32,7 +37,7 @@ public class Rogue extends Player {
             LinkedList<Enemy> toAttack=new LinkedList<>();
             this.currentEnergy=this.currentEnergy-this.cost;
             for(Enemy e: GameBoard.gameUnits){
-                if (e.euclideanDistance(e.position,this.position)<range)
+                if (e.euclideanDistance(e.getPosition(),this.position)<range)
                     toAttack.addFirst(e);
             }
             for (Enemy enemy :toAttack)

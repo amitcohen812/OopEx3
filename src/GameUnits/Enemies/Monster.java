@@ -1,3 +1,6 @@
+package GameUnits.Enemies;
+import GameBoard.*;
+import GameUnits.Health;
 
 import java.awt.*;
 import java.util.Random;
@@ -6,7 +9,7 @@ public class Monster extends Enemy {
 
     private Integer visionRange;
 
-    public Monster(String name, Health health, Integer attackPoints, Integer defensePoints, Integer experienceValue, char tile,Integer visionRange) {
+    public Monster(String name, Health health, Integer attackPoints, Integer defensePoints, Integer experienceValue, char tile, Integer visionRange) {
         super(name, health, attackPoints, defensePoints, experienceValue, tile);
         this.visionRange=visionRange;
     }
@@ -16,7 +19,7 @@ public class Monster extends Enemy {
         this.visionRange=e.visionRange;
     }
     public void gameTick(){ //traversing around the board, chase if in range
-        Point playerPosition=GameBoard.player.position;
+        Point playerPosition= GameBoard.player.getPosition();
         if (this.euclideanDistance(this.position,playerPosition)<visionRange){
             int dx=this.position.x-playerPosition.x;
             int dy=this.position.y-playerPosition.y;
@@ -35,7 +38,7 @@ public class Monster extends Enemy {
             //int index=rnd.nextInt(5);
             int index;
             try {
-                index=GameBoardSystemService.nextNum(5);
+                index= GameBoardSystemService.nextNum(5);
             }
             catch (Exception e){Random rnd=new Random();index=rnd.nextInt(5);}//text file ran out of numbers
             switch (index){
