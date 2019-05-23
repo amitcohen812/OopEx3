@@ -1,3 +1,8 @@
+package GameBoard;
+
+import DeterministicMode.DeterministicMode;
+import GameUnits.Players.Player;
+
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
@@ -25,7 +30,7 @@ public class GameBoardSystemService{
         GameBoard.player=possiblePlayers.get(choice-1);
         Player player=GameBoard.player;
         player.addObserver(b);
-        GameBoard.player.position=GameBoard.playerPosition;
+        GameBoard.player.setPosition(GameBoard.playerPosition);
         System.out.println("you chose: "+player);
         System.out.println(b);
         System.out.println("For you to know! w - move up, s - move down, a - move left, d - move right" +
@@ -55,7 +60,7 @@ public class GameBoardSystemService{
             else System.out.println("nothing has changed, ability usage didn't work");
             if (GameBoard.gameUnits.size()==0) {
                 b.scanBoard();
-                player.position=GameBoard.playerPosition;
+                player.setPosition(GameBoard.playerPosition);
             }
             System.out.println(b);
             System.out.println(player);
@@ -68,7 +73,7 @@ public class GameBoardSystemService{
         System.out.println("You win!");
     }
     public static void onLevelUp(){
-        System.out.println("Player leveled up!");
+        System.out.println("GameUnits.Players.Player leveled up!");
     }
     public static void onEnemyAttack(int damage){
         if (damage<0)
@@ -78,7 +83,7 @@ public class GameBoardSystemService{
     public static void onPlayerAttack(int damage){
         if (damage<0)
             damage=0;
-        System.out.println("You attacked an Enemy with the damage of :"+damage);
+        System.out.println("You attacked an GameUnits.Enemies.Enemy with the damage of :"+damage);
     }
     public static void buildDeterministic(){
         dm=new DeterministicMode();

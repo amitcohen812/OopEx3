@@ -1,13 +1,22 @@
+package GameBoard;
+
+import GameUnits.*;
+import GameUnits.Enemies.Enemy;
+import GameUnits.Enemies.Monster;
+import GameUnits.Enemies.Trap;
+import GameUnits.Players.Mage;
+import GameUnits.Players.Player;
+import GameUnits.Players.Rogue;
+import GameUnits.Players.Warrior;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileReader;
-import java.lang.ref.SoftReference;
 import java.nio.file.Files;
 import java.util.*;
 import java.util.List;
 
 public class GameBoard implements Observer{
+
     private String pathToBoards;
     public static String isDeterministic;
     public static char [][] gameBoard;
@@ -97,9 +106,9 @@ public class GameBoard implements Observer{
         Monster theMountain =new Monster("The Mountain",new Health(1000,1000),60,25,500,'M',6);
         Monster queenCersei=new Monster("Queen Cersei",new Health(100,100),10,10,1000,'C',1);
         Monster knightKing=new Monster("Knight King",new Health(5000,5000),300,150,5000,'K',8);
-        Trap bonusTrap=new Trap("Bonus Trap",new Health(1,1),1,1,250,'B',5,6,2);
-        Trap queensTrap=new Trap("Queen's Trap",new Health(250,250),50,10,100,'Q',4,10,4);
-        Trap deathTrap=new Trap("Death Trap",new Health(500,500),100,20,250,'D',6,10,3);
+        Trap bonusTrap=new Trap("Bonus GameUnits.Enemies.Trap",new Health(1,1),1,1,250,'B',5,6,2);
+        Trap queensTrap=new Trap("Queen's GameUnits.Enemies.Trap",new Health(250,250),50,10,100,'Q',4,10,4);
+        Trap deathTrap=new Trap("Death GameUnits.Enemies.Trap",new Health(500,500),100,20,250,'D',6,10,3);
         possibleEnemies.addFirst(lannisterSoldier);
         possibleEnemies.addFirst(knight);
         possibleEnemies.addFirst(queenCersei);
@@ -137,10 +146,10 @@ public class GameBoard implements Observer{
 
     public static void combat(Player attacker, Enemy defender){
        attacker.attack(defender);
-       if (defender.health.getCurrentHealth()<=0) {
+       if (defender.getHealth().getCurrentHealth()<=0) {
            gameUnits.remove(defender);
-           attacker.experience+=defender.getExperienceValue();
-           gameBoard[defender.position.y][defender.position.x]='.';
+           attacker.setExperience(defender.getExperienceValue()+attacker.getExperience());
+           gameBoard[defender.getPosition().y][defender.getPosition().x]='.';
            if (gameUnits.size()==0){
                if (level+1==files.size()) {
                    endTheGame = true;
@@ -153,8 +162,8 @@ public class GameBoard implements Observer{
     }
     public static void combat(Enemy attacker,Player defender){
         attacker.attack(defender);
-        if (defender.health.getCurrentHealth()<=0){
-            gameBoard[defender.position.y][defender.position.x]='X';
+        if (defender.getHealth().getCurrentHealth()<=0){
+            gameBoard[defender.getPosition().y][defender.getPosition().x]='X';
             endTheGame=true;
             GameBoardSystemService.onLosing();
         }
@@ -187,10 +196,10 @@ public class GameBoard implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         if (gameUnits.contains(o))
-            gameBoard[((GameUnit) o).position.y][((GameUnit) o).position.x]=((Enemy) o).getTile();
+            gameBoard[((GameUnit) o).getPosition().y][((GameUnit) o).getPosition().x]=((Enemy) o).getTile();
         else{
-            player.position=((GameUnit) o).position;
-            gameBoard[player.position.y][player.position.x]='@';
+            player.setPosition(((GameUnit) o).getPosition());
+            gameBoard[player.getPosition().y][player.getPosition().x]='@';
         }
     }
 }

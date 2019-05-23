@@ -1,10 +1,12 @@
+package GameUnits.Players;
 
+import GameUnits.Health;
 
 public class Warrior extends Player {
     private Integer cooldown;
     private Integer remaining;
 
-    public Warrior(Integer cooldown,String name,Health health,Integer attackPoints,Integer defensePoints){
+    public Warrior(Integer cooldown, String name, Health health, Integer attackPoints, Integer defensePoints){
         super(name, health, attackPoints, defensePoints);
         this.cooldown=cooldown;
         this.remaining=cooldown;

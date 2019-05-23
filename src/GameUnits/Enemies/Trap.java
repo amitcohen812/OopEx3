@@ -1,3 +1,7 @@
+package GameUnits.Enemies;
+import GameBoard.*;
+import GameUnits.Health;
+
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
@@ -32,9 +36,9 @@ public class Trap extends Enemy {
         if (ticksCount.intValue()==relocationTime.intValue()){
             ticksCount=0;
             LinkedList<Point> optPoints=new LinkedList<>();
-            for (int i=0;i<GameBoard.gameBoard.length;i=i+1){
-                for (int j=0;j<GameBoard.gameBoard[i].length;j=j+1){
-                    if (this.euclideanDistance(this.position,new Point(j,i))<relocationRange&GameBoard.gameBoard[i][j]=='.')
+            for (int i = 0; i< GameBoard.gameBoard.length; i=i+1){
+                for (int j = 0; j< GameBoard.gameBoard[i].length; j=j+1){
+                    if (this.euclideanDistance(this.position,new Point(j,i))<relocationRange& GameBoard.gameBoard[i][j]=='.')
                         optPoints.addFirst(new Point(j,i));
                 }
             }
@@ -45,7 +49,7 @@ public class Trap extends Enemy {
         }
         else {
             ticksCount=ticksCount+1;
-            if (this.euclideanDistance(this.position,GameBoard.player.position)<2) {
+            if (this.euclideanDistance(this.position, GameBoard.player.getPosition())<2) {
                 GameBoard.combat(this, GameBoard.player);
             }
         }

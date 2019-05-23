@@ -1,3 +1,7 @@
+package GameUnits.Enemies;
+import GameBoard.*;
+import GameUnits.GameUnit;
+import GameUnits.Health;
 
 import java.awt.*;
 
@@ -6,7 +10,7 @@ public abstract class Enemy extends GameUnit {
     private Integer experienceValue;
     private char tile;
 
-    public Enemy(String name, Health health, Integer attackPoints, Integer defensePoints,Integer experienceValue,char tile) {
+    public Enemy(String name, Health health, Integer attackPoints, Integer defensePoints, Integer experienceValue, char tile) {
         super(name, health, attackPoints, defensePoints);
         this.experienceValue=experienceValue;
         this.tile=tile;
@@ -38,32 +42,32 @@ public abstract class Enemy extends GameUnit {
         super.moveLeft();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x-1;
-        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
-            GameBoard.combat(this,GameBoard.player);
+        if (tempPos.x== GameBoard.player.getPosition().x&&tempPos.y== GameBoard.player.getPosition().y){
+            GameBoard.combat(this, GameBoard.player);
         }
     }
     protected void moveRight(){
        super.moveRight();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x+1;
-        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
-            GameBoard.combat(this,GameBoard.player);
+        if (tempPos.x== GameBoard.player.getPosition().x&&tempPos.y== GameBoard.player.getPosition().y){
+            GameBoard.combat(this, GameBoard.player);
         }
     }
     protected void moveUp(){
         super.moveUp();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y-1;
-        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
-            GameBoard.combat(this,GameBoard.player);
+        if (tempPos.x== GameBoard.player.getPosition().x&&tempPos.y== GameBoard.player.getPosition().y){
+            GameBoard.combat(this, GameBoard.player);
         }
     }
     protected void moveDown() {
         super.moveDown();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y+1;
-        if (tempPos.x==GameBoard.player.position.x&&tempPos.y==GameBoard.player.position.y){
-            GameBoard.combat(this,GameBoard.player);
+        if (tempPos.x== GameBoard.player.getPosition().x&&tempPos.y== GameBoard.player.getPosition().y){
+            GameBoard.combat(this, GameBoard.player);
         }
     }
 

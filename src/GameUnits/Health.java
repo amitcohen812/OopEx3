@@ -1,3 +1,5 @@
+package GameUnits;
+
 public class Health {
     private Integer healthPool;
     private Integer currentHealth;

@@ -1,5 +1,11 @@
+package GameUnits.Players;
+import GameBoard.*;
+import GameUnits.Enemies.Enemy;
+import GameUnits.Enemies.Trap;
+import GameUnits.GameUnit;
+import GameUnits.Health;
+
 import java.awt.*;
-import java.util.LinkedList;
 
 public abstract class Player extends GameUnit {
 
@@ -38,62 +44,70 @@ public abstract class Player extends GameUnit {
 
     public void gameTick(){}
     @Override
-    protected void moveDown() {
+    public void moveDown() {
         super.moveDown();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y+1;
         Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
-        for (Enemy enemy :GameBoard.gameUnits) {
-            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+        for (Enemy enemy : GameBoard.gameUnits) {
+            if (enemy.getPosition().x==tempPos.x&enemy.getPosition().y==tempPos.y)
                 toAttack=enemy;
         }
-        if (!toAttack.name.equals("temp"))
+        if (!toAttack.getName().equals("temp"))
             GameBoard.combat(this,toAttack);
         gameTick();
     }
 
     @Override
-    protected void moveLeft() {
+    public void moveLeft() {
         super.moveLeft();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x-1;
         Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
-        for (Enemy enemy :GameBoard.gameUnits) {
-            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+        for (Enemy enemy : GameBoard.gameUnits) {
+            if (enemy.getPosition().x==tempPos.x&enemy.getPosition().y==tempPos.y)
                 toAttack=enemy;
         }
-        if (!toAttack.name.equals("temp"))
+        if (!toAttack.getName().equals("temp"))
             GameBoard.combat(this,toAttack);
         gameTick();
     }
 
     @Override
-    protected void moveRight() {
+    public void moveRight() {
         super.moveRight();
         Point tempPos=new Point(position.x,position.y);
         tempPos.x=tempPos.x+1;
         Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
-        for (Enemy enemy :GameBoard.gameUnits) {
-            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+        for (Enemy enemy : GameBoard.gameUnits) {
+            if (enemy.getPosition().x==tempPos.x&enemy.getPosition().y==tempPos.y)
                 toAttack=enemy;
         }
-        if (!toAttack.name.equals("temp"))
+        if (!toAttack.getName().equals("temp"))
             GameBoard.combat(this,toAttack);
         gameTick();
     }
 
     @Override
-    protected void moveUp() {
+    public void moveUp() {
         super.moveUp();
         Point tempPos=new Point(position.x,position.y);
         tempPos.y=tempPos.y-1;
         Enemy toAttack=new Trap("temp",new Health(100,100),0,0,0,'t',0,0,0);
-        for (Enemy enemy :GameBoard.gameUnits) {
-            if (enemy.position.x==tempPos.x&enemy.position.y==tempPos.y)
+        for (Enemy enemy : GameBoard.gameUnits) {
+            if (enemy.getPosition().x==tempPos.x&enemy.getPosition().y==tempPos.y)
                 toAttack=enemy;
         }
-        if (!toAttack.name.equals("temp"))
+        if (!toAttack.getName().equals("temp"))
             GameBoard.combat(this,toAttack);
         gameTick();
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
     }
 }
