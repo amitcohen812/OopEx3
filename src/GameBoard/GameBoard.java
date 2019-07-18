@@ -130,7 +130,7 @@ public class GameBoard implements Observer{
             for (int j=0;j<gameBoard[i].length;j=j+1){
                 char c=gameBoard[i][j];
                 for (Enemy e:possibleEnemies){
-                    if (e.getTile()==c)
+                    if (e.getTile()==c)//right enemy found
                         if (e instanceof Monster){
                             gameUnits.addFirst(new Monster((Monster) e,new Point(j,i)));
                             gameUnits.get(0).addObserver(this);

@@ -1,6 +1,7 @@
-package GameUnits;
+package GameUnits.Testing;
 
 import GameUnits.Enemies.Monster;
+import GameUnits.Health;
 import GameUnits.Players.Warrior;
 import org.junit.Test;
 
@@ -22,14 +23,14 @@ public class GameUnitTest {
 
     @Test
      public void attack(){
-        int num= jonTest.attack(jonTest,lannisterSoldierTest);
-        assertTrue(num>=0);
+        jonTest.attack(lannisterSoldierTest);
+        assertTrue(lannisterSoldierTest.getHealth().getCurrentHealth()<=80);
      }
 
      @Test
      public void testSetPos(){
         jonTest.setPosition(new Point(2,3));
-        assertTrue(jonTest.position.x==2&jonTest.position.y==3);
+        assertTrue(jonTest.getPosition().x==2&jonTest.getPosition().y==3);
      }
 
 
