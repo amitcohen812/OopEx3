@@ -34,17 +34,19 @@ public class GameBoardSystemService{
         System.out.println("you chose: "+player);
         System.out.println(b);
         System.out.println("For you to know! w - move up, s - move down, a - move left, d - move right" +
-                "e - cast special ability, q - quit your turn");
+                "e - cast special ability, q - quit your turn, p - pass level on demand");
         while (!GameBoard.endTheGame&(dm==null||dm.hasNextAction())){
             //play!
             System.out.println("use w/a/s/d/q/e to play");
             char c=nextAction();
             boolean flag=true;
+            boolean passOnDemand=false;
             switch (c){
                 case 'w': player.moveUp();break;
                 case 's':player.moveDown();break;
                 case 'a':player.moveLeft();break;
                 case 'd':player.moveRight();break;
+                case 'p' :{GameBoard.passByOrder();flag=false;passOnDemand=true;break;}
                 case 'e':
                     {
                         flag= player.castSpecialAbility();
@@ -57,8 +59,8 @@ public class GameBoardSystemService{
             }
             if (flag)
                 b.gameTick();
-            else System.out.println("nothing has changed, ability usage didn't work");
-            if (GameBoard.gameUnits.size()==0) {
+            else System.out.println("nothing has changed, ability usage didn't work, or You chose to pass level on demand");
+            if (GameBoard.gameUnits.size()==0||passOnDemand) {
                 b.scanBoard();
                 player.setPosition(GameBoard.playerPosition);
             }

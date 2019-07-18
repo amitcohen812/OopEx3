@@ -6,8 +6,8 @@ import java.util.List;
 
 
 public class DeterministicMode implements ActionReader,RandomGenerator {
-    private final String pathToNumbers="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\deterministicMode\\random_numbers.txt";
-    private final  String pathToActions="C:\\Users\\amitc\\Desktop\\Degree\\Second Semester\\oop\\OopEx3\\deterministicMode\\user_actions.txt";
+    private final String pathToNumbers="random_numbers.txt";
+    private final  String pathToActions="user_actions.txt";
     private List<String> actions;
     private List<String> numbers;
     private String nextAction;

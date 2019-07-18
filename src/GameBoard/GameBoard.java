@@ -160,6 +160,13 @@ public class GameBoard implements Observer{
 
        }
     }
+    public static void passByOrder(){
+        if (level+1==files.size()) {
+            endTheGame = true;
+            GameBoardSystemService.onWinning();
+        }
+        else{ level++; buildBoard(files.get(level));}
+    }
     public static void combat(Enemy attacker,Player defender){
         attacker.attack(defender);
         if (defender.getHealth().getCurrentHealth()<=0){
